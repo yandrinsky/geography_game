@@ -1,0 +1,11 @@
+{
+  "name": "temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync --server --files \"*.html, ./src/js/*.js, ./src/css/*.css\""
+  },
+  "author": "",
+  "license": "ISC"
+}

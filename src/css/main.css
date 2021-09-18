@@ -16,6 +16,13 @@ ul,li{
 	padding: 0;
 }
 
+body{
+	background-color: #F1F2F4;
+	margin: 0;
+	padding: 0;
+	transition: background-color 0.2s ease-in-out;
+}
+
 .game{
 	height: 100vh;
 	display: -webkit-box;
@@ -36,13 +43,14 @@ ul,li{
 	max-width: 900px;
 	width: 100%;
 	height: 600px;
-	background-color: #EDD746;
+	background-color: #ffffff;
 	padding: 30px;
 	position: relative;
 	-webkit-transition: all 0.2s ease-in;
 	-o-transition: all 0.2s ease-in;
 	transition: all 0.2s ease-in;
-	border-radius: 20px;
+	/*border-radius: 20px;*/
+	box-shadow: 4px 4px 6px 0px #A9A9A9
 }
 
 .gameWindow__wrap{
@@ -64,12 +72,20 @@ ul,li{
 	margin: 0 auto;
 	border-radius: 20px;
 	cursor: pointer;
+	z-index: 10;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+}
+
+.open{
+	transform: translateY(57%) scale(2.2);
 }
 
 .gameWindow__question{
 	font-weight: bold;
 	text-align: center;
 	font-size: 22px;
+	color: #f9a825;
 }
 
 .gameWindow__answer{
@@ -77,11 +93,16 @@ ul,li{
 	cursor: pointer;
 	margin-bottom: 30px;
 	display: inline-block;
+	transition: all 0.13s ease-in;
 }
-
+.transition_none{
+	transition: none !important;
+}
 .gameWindow__answer:hover{
-	font-weight: bold;
-	color: #ED5646;
+	/*font-weight: bold;*/
+	transform: scale(1.1);
+	color: #f9a825;
+	transition: all 0.13s ease-in;
 }	
 
 .gameWindow__score div{
@@ -111,9 +132,8 @@ ul,li{
 	position: absolute;
 }
 
-.wrong{ 
-	/*background-color: #AC1417;*/
-	background-color: #EA1C1F;
+.wrong{
+	background-color: #DE4C4A;
 }
 
 .rightAnswer{ 
@@ -126,6 +146,38 @@ ul,li{
 	color: #2CD523;
 }
 
+.team_name_input{
+	border: 2px solid #fdd835;
+	border-top: 2px solid #fbc02d;
+	border-left: 2px solid #fbc02d;
+	outline: none;
+	padding: 15px;
+	font-size: 20px;
+}
+
+.start__team label{
+	transition: all 0.15s ease-in-out;
+}
+
+.active_label{
+	color: #f57f17;
+	transform: scale(1.05) translateX(25px);
+}
+
+
+.team_name_input:active{
+	outline: none;
+}
+/*label[for="first-name"]{*/
+/*	color: red;*/
+/*}*/
+/*label[for="first-name"]*/
+#first-name:focus ~ #first-name_label{
+	color: red !important;
+}
+/*label[for="first-name"] ~ #first-name:focus{*/
+/*	color: red;*/
+/*}*/
 
 .team-1_endOfGame{
 	left: 70px;
@@ -163,17 +215,10 @@ ul,li{
 
 .winner span{
 	font-weight: bold;
+	color: #f9a825;
 }
 
-.open{
-	position: absolute;
-	width: 95%;
-	height: auto !important;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	    -ms-transform: translateX(-50%);
-	        transform: translateX(-50%);
-}
+
 
 .start__title{
 	font-size: 30px;
@@ -196,10 +241,13 @@ ul,li{
 .start-game{
 	margin-top: 30px;
 	font-size: 20px;
-	border: 2px solid #000;
-	border-radius: 20px;
+	border: none;
 	padding: 7px 12px;
 	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.1s ease-in-out;
+
 }
 .start__team label{
 	margin-bottom: 10px;
@@ -210,9 +258,33 @@ ul,li{
 	height: 40px;
 	border-radius: 10px;
 }
-.start-game:hover{ 
-	background-color: #EA1C1F;
+
+.start-game:after{
+	content: "Тык";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: #fbc02d;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translateX(-100px);
+	transition: transform 0.2s ease-in-out;
+	color: black;
 }
+
+.start-game:hover:after{
+	transform: translateX(0);
+}
+
+/*.start-game:hover{*/
+/*	color: #F0F0F0;*/
+/*}*/
+
+
 
 .start-game:active{
 	-webkit-transform: scale(0.95);
@@ -227,5 +299,5 @@ ul,li{
 .active{
 	font-size: 20px;
 	font-weight: bold;
-	color: #BE0B0E;
+	color: #f9a825;
 }

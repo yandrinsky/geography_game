@@ -16,17 +16,17 @@ let dataCenter = (function(){
     }  
 
     class Question {
-        constructor(img, question, answers, rigthAnswer){
+        constructor(img, question, answers, rightAnswer){
             this.img = img;
             this.question = question;
             this.answers = answers;
-            this.rigthAnswer = rigthAnswer;
+            this.rightAnswer = rightAnswer;
             this.isAttemptFirst = true;
         }
     }
 
-    function saveQuestion(img, question, answers, rigthAnswer){ 
-        data.questions.push(new Question(img, question, answers, rigthAnswer));
+    function saveQuestion(img, question, answers, rightAnswer){ 
+        data.questions.push(new Question(img, question, answers, rightAnswer));
     }
 
     return{
@@ -35,34 +35,29 @@ let dataCenter = (function(){
             saveQuestion('q1.jpg', 'О чем идёт речь?', ["О пизанской башне", "О Храме на крови", "О Софийском соборе"], 0);
             saveQuestion('q2.jpg', 'Что построил Людовик 14?', ["Эйфелеву башню", "Версальский дворец", "Собор Парижской богоматери"], 1);
             saveQuestion('q3.jpg', 'Какой монастырь был построен Герцогом Фридрихом?', ["Августинская церковь", "Кентерберийский собор", "Берлинский кафедральный собор"], 0);
-            saveQuestion('q4.jpg', 'О каком памятнике идёт речь', ["Моаи(головы на острове пасхи)", "Валера смирился", " Писающий мальчик"], 2);
-            saveQuestion('q5.jpg', 'Как называется и кому посвящен данный памятник? ', ["Памятник Иоанну 4 в Амстердаме", "Памятник Александру 1 в Роттердаме", "Памятник Пётру 1 в Заандаме"], 2);
-            saveQuestion('q6.jpg', 'Кому посвящён бюст в Баден-Баден?', ["Пушкину", "Маяковскому", "Тургеневу"], 2);
-            saveQuestion('q7.jpg', 'Кому посвящён этот памятник?', ["Наполеону", "Кутузову", "Багратиону"], 0);
-            saveQuestion('q8.jpg', 'О каком сооружении идёт речь?', ["Амфитеатр Аммана", "Колизей", "Древняя арена Вероны"], 1);
-            saveQuestion('q9.jpg', 'Кому посвящена данная статуя?', ["Афродите", "Аресу", "Зевсу"], 2);
-            saveQuestion('q10.jpg', 'Как называется это строение?', ["Дворец дождей", "Тадж махал", "Монастырь нораванк"], 1);
-            saveQuestion('q12.jpg', 'Что это за крепость?', ["Форт Боярд", "Замок Иф", "Замок Амбуаз"], 0);
-            saveQuestion('q13.jpg', 'Как называется эта крепость?', ["Кревская крепость", "Храм-крепость Святого Михаила", "Брестская крепость"], 2);
-            saveQuestion('q14.jpg', 'Что изображено на фотографии?', ["Кёльнский собор", "Храм Святого Семейства", "Крайслер Билдинг"], 0);
-            saveQuestion('q15.jpg', 'Назовите сооружение', ["Харбор-Бридж", "Тауэрский мост", "Бруклинский мост"], 1);
-
-
-            
-
-
+            // saveQuestion('q4.jpg', 'О каком памятнике идёт речь', ["Моаи(головы на острове пасхи)", "Валера смирился", " Писающий мальчик"], 2);
+            // saveQuestion('q5.jpg', 'Как называется и кому посвящен данный памятник? ', ["Памятник Иоанну 4 в Амстердаме", "Памятник Александру 1 в Роттердаме", "Памятник Пётру 1 в Заандаме"], 2);
+            // saveQuestion('q6.jpg', 'Кому посвящён бюст в Баден-Баден?', ["Пушкину", "Маяковскому", "Тургеневу"], 2);
+            // saveQuestion('q7.jpg', 'Кому посвящён этот памятник?', ["Наполеону", "Кутузову", "Багратиону"], 0);
+            // saveQuestion('q8.jpg', 'О каком сооружении идёт речь?', ["Амфитеатр Аммана", "Колизей", "Древняя арена Вероны"], 1);
+            // saveQuestion('q9.jpg', 'Кому посвящена данная статуя?', ["Афродите", "Аресу", "Зевсу"], 2);
+            // saveQuestion('q10.jpg', 'Как называется это строение?', ["Дворец дождей", "Тадж махал", "Монастырь нораванк"], 1);
+            // saveQuestion('q12.jpg', 'Что это за крепость?', ["Форт Боярд", "Замок Иф", "Замок Амбуаз"], 0);
+            // saveQuestion('q13.jpg', 'Как называется эта крепость?', ["Кревская крепость", "Храм-крепость Святого Михаила", "Брестская крепость"], 2);
+            // saveQuestion('q14.jpg', 'Что изображено на фотографии?', ["Кёльнский собор", "Храм Святого Семейства", "Крайслер Билдинг"], 0);
+            // saveQuestion('q15.jpg', 'Назовите сооружение', ["Харбор-Бридж", "Тауэрский мост", "Бруклинский мост"], 1);
         },
         getData: function(){
             return data;
         },
         sendAnswer: function(answer, number, isAttemptFirst){
-            console.log(`Answer is ${answer}, currect answer is ${data.questions[number].rigthAnswer}`)
+            console.log(`Answer is ${answer}, currect answer is ${data.questions[number].rightAnswer}`)
             isAnswerRight = false;
             let isAttemptFirstData = data.questions[number].isAttemptFirst;
 
 
             //Определяем, что ответить на запрос (если ответ правильный, то отправляем true, однако только если ответ правильный и попытка первая, засчитываем очко)
-            if(answer === data.questions[number].rigthAnswer){
+            if(answer === data.questions[number].rightAnswer){
                 isAnswerRight = true;
                 if(isAttemptFirstData){
                     data.players.team1 ? data.score.team1++ : data.score.team2++; 
@@ -70,7 +65,7 @@ let dataCenter = (function(){
             } 
 
             //Определяем, когда менять игрока (если ответ правильный и попытка первая ИЛИ если ответ правильный, но попытка не первая)
-            if(((answer === data.questions[number].rigthAnswer) && isAttemptFirstData) || ((answer === data.questions[number].rigthAnswer) && !isAttemptFirstData)){
+            if(((answer === data.questions[number].rightAnswer) && isAttemptFirstData) || ((answer === data.questions[number].rightAnswer) && !isAttemptFirstData)){
                 if(data.players.team1){
                     data.players.team1 = false;
                     data.players.team2 = true;
@@ -106,6 +101,7 @@ let dataCenter = (function(){
 
 let UIcenter = (function(){
     let DOM = {
+        body: document.querySelector("body"),
         window: sel('.gameWindow'),
         img: sel('.gameWindow__img img'),
         question: sel('.gameWindow__question p'),
@@ -121,6 +117,7 @@ let UIcenter = (function(){
         regWindow: sel('.gameWindow__reg'),
         name1: sel('.team-1 p'), 
         name2: sel('.team-2 p'),
+        nameInputs: document.querySelectorAll(".team_name_input"),
     }
     return{
         updateImg: function(img){
@@ -131,9 +128,16 @@ let UIcenter = (function(){
         },
 
         updateAnswers: function(answers){
-            DOM.answer1.textContent = answers[0];
-            DOM.answer2.textContent = answers[1];
-            DOM.answer3.textContent = answers[2];
+            for (let i = 0; i < 3; i++) {
+                let id = "answer" + (i + 1)
+                DOM[id].textContent = answers[i];
+                //такая конструкция нужна, чтобы при новом вопросе не осталась отметка от старого
+                //из-за transition. А потом снова позволям transition
+                DOM[id].classList.add("transition_none");
+                setTimeout(()=> {
+                    DOM[id].classList.remove("transition_none");
+                }, 0)
+            }
         },
         updateScore: function(score1, score2){
             DOM.score1.textContent = score1;
@@ -144,14 +148,14 @@ let UIcenter = (function(){
             DOM.name2.textContent = name2;
         },
 
-        setMistakeTheme: function(rigthAnswer){
-            DOM.window.classList.add('wrong');
-            sel('#ans-' + rigthAnswer).classList.add('rightAnswer');
+        setMistakeTheme: function(rightAnswer){
+            DOM.body.classList.add('wrong');
+            sel('#ans-' + rightAnswer).classList.add('rightAnswer');
         },
 
-        removeMistakeTheme: function(rigthAnswer){
-            DOM.window.classList.remove('wrong');
-            sel('#ans-' + rigthAnswer).classList.remove('rightAnswer');
+        removeMistakeTheme: function(rightAnswer){
+            DOM.body.classList.remove('wrong');
+            sel('#ans-' + rightAnswer).classList.remove('rightAnswer');
         },
 
         setEndOfGameTheme: function(score1, score2, name1, name2, winner){
@@ -170,18 +174,18 @@ let UIcenter = (function(){
                 </div>`
             } else {
                 html += `<div class="winner">
-                        Ничья!
+                        <span>Ничья!</span>
                     </div>
                 </div>`
             }
             DOM.window.innerHTML = html;
         },
 
-        showRightAnswer: function(rigthAnswer){
-            sel('#ans-' + rigthAnswer).classList.add('rightAnswer');
+        showRightAnswer: function(rightAnswer){
+            sel('#ans-' + rightAnswer).classList.add('rightAnswer');
         }, 
-        stopShowRightAnswer: function(rigthAnswer){
-            sel('#ans-' + rigthAnswer).classList.remove('rightAnswer');
+        stopShowRightAnswer: function(rightAnswer){
+            sel('#ans-' + rightAnswer).classList.remove('rightAnswer');
         },
 
         openImg: function(){
@@ -217,7 +221,7 @@ let UIcenter = (function(){
     }
 })()
 
-let conrolCenter = (function(){
+let controlCenter = (function(){
     dataCenter.defineQuestions();
     let data = dataCenter.getData();
     let questionsLength = data.questions.length;
@@ -226,18 +230,33 @@ let conrolCenter = (function(){
 
   
     let DOM = UIcenter.getDOM();
- 
+
+
+    function setAnswersHandlers(){
+        for(let i = 1; i <= 3; i++){
+            DOM["answer" + i].onclick =  clickHandler.bind(this, (DOM["answer" + i]));
+        }
+    }
+
+    function removeAnswersHandlers(){
+        for(let i = 1; i <= 3; i++){
+            DOM["answer" + i].onclick =  undefined;
+        }
+    }
 
     function setEventListeners(){
-        DOM.answer1.addEventListener('click', ()=> {
-            clickHandler(DOM.answer1)
+
+        setAnswersHandlers();
+
+        DOM.nameInputs.forEach(input => {
+            input.onfocus  = (e) => {
+                e.target.previousElementSibling.classList.add("active_label");;
+            }
+            input.onblur = (e) => {
+                e.target.previousElementSibling.classList.remove("active_label");;
+            }
         })
-        DOM.answer2.addEventListener('click', ()=> {
-            clickHandler(DOM.answer2)
-        })
-        DOM.answer3.addEventListener('click', ()=> {
-            clickHandler(DOM.answer3)
-        })
+
         DOM.getNames.addEventListener('click', ()=>{
             startGame();
         })
@@ -281,31 +300,34 @@ let conrolCenter = (function(){
         let isAttemptFirst = true;
 
         if(count < questionsLength){
-            let isAnsweRight = dataCenter.sendAnswer(parseInt(answer), count, isAttemptFirst);
-            console.log(isAnsweRight);
-            if(isAnsweRight) {
+            let isAnswerRight = dataCenter.sendAnswer(parseInt(answer), count, isAttemptFirst);
+            console.log(isAnswerRight);
+            if(isAnswerRight) {
+                removeAnswersHandlers(); // удаляем обработчики клика на ответов.
                 if(count < questionsLength - 1){
-                    UIcenter.showRightAnswer(data.questions[count].rigthAnswer);
+                    UIcenter.showRightAnswer(data.questions[count].rightAnswer);
                     setTimeout(()=> {
                         count++;
-                        UIcenter.stopShowRightAnswer(data.questions[count-1].rigthAnswer);
-                        UIcenter.removeMistakeTheme(data.questions[count-1].rigthAnswer);
-                        updateUI();  
-                    }, 1300)
+                        UIcenter.stopShowRightAnswer(data.questions[count-1].rightAnswer);
+                        UIcenter.removeMistakeTheme(data.questions[count-1].rightAnswer);
+                        updateUI();
+                        setAnswersHandlers(); //возвращает обработчкики клика ответов.
+                    }, 1000)
                     
                 } else {
+                    UIcenter.showRightAnswer(data.questions[count].rightAnswer);
                     count++;
                     UIcenter.updateScore(data.score.team1, data.score.team2);
                     let resulOfGame = dataCenter.defineWinner();
                     setTimeout(()=>{
                         UIcenter.updateScore(data.score.team1, data.score.team2);
-                        UIcenter.removeMistakeTheme(data.questions[count-1].rigthAnswer);
-                        UIcenter.showRightAnswer(data.questions[count-1].rigthAnswer);
+                        UIcenter.removeMistakeTheme(data.questions[count-1].rightAnswer);
+                        UIcenter.showRightAnswer(data.questions[count-1].rightAnswer);
                         UIcenter.setEndOfGameTheme(data.score.team1, data.score.team2, data.userNames.team1, data.userNames.team2, resulOfGame);
-                    }, 1300)
+                    }, 1000)
                 }
             } else {
-                UIcenter.setMistakeTheme(data.questions[count].rigthAnswer);
+                UIcenter.setMistakeTheme(data.questions[count].rightAnswer);
                 isAttemptFirst = false;
             }
         }    
@@ -319,6 +341,6 @@ let conrolCenter = (function(){
     }
 })(dataCenter, UIcenter)
 
-conrolCenter.init();
+controlCenter.init();
  
 //--------------------
